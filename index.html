@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roulette Fibonacci</title>
+    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-white flex items-center justify-center h-screen p-2">
@@ -12,7 +13,7 @@
         
         <div class="mb-4">
             <label for="totalBudget" class="block mb-2">Budget total :</label>
-            <input type="number" id="totalBudget" class="bg-gray-700 text-white p-2 rounded w-20 mx-auto text-center" placeholder="Ex: 40€">
+            <input type="number" id="totalBudget" class="bg-gray-700 text-white p-2 rounded w-20 mx-auto text-center" placeholder="Ex: 40 €">
         </div>
         
         <button id="startButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6">Commencer</button>
@@ -31,5 +32,18 @@
     </div>
     
     <script src="index.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered: ', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
